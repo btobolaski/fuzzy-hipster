@@ -10,4 +10,25 @@
  */
 
 // List the shortcodes that this plugin uses
+add_shortcode("pullquote", "fh_quote");
+
 // The function that actually makes the output
+function fh_quote($atts, $content = null) {
+	extract(shortcode_atts(array(
+		"author" => "",
+		"site" => ""
+	), $atts));
+	$output_quote = "<figure class='quote'>\n";
+	$output_quote = $output_quote . "\t" . $content . "\n";
+	$output_quote = $output_quote . "\t<figcaption>";
+	if ( $author != "" ){
+		$output_quote = $output_quote . $author;
+	}
+	if ( $site != "" ){
+		$output_quote = $output_quote . " at <cite>" . $site . "</cite>";
+	}
+	$output_quote = $output_quote . "</figcaption>\n</figure>\n";
+	return $output_quote;
+}
+
+?>
