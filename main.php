@@ -20,14 +20,17 @@ function fh_quote($atts, $content = null) {
 	), $atts));
 	$output_quote = "<figure class='quote'>\n";
 	$output_quote = $output_quote . "\t" . $content . "\n";
-	$output_quote = $output_quote . "\t<figcaption>";
-	if ( $author != "" ){
-		$output_quote = $output_quote . $author;
+	if ( $author != "" or $site != "" ) {
+		$output_quote = $output_quote . "\t<figcaption>";
+		if ( $author != "" ){
+			$output_quote = $output_quote . $author;
+		}
+		if ( $site != "" ){
+			$output_quote = $output_quote . " at <cite>" . $site . "</cite>";
+		}
+		$output_quote = $output_quote . "</figcaption>\n";
 	}
-	if ( $site != "" ){
-		$output_quote = $output_quote . " at <cite>" . $site . "</cite>";
-	}
-	$output_quote = $output_quote . "</figcaption>\n</figure>\n";
+	$output_quote = $output_quote . "</figure>\n";
 	return $output_quote;
 }
 
